@@ -1,1 +1,57 @@
 /* You can add global styles to this file, and also import other style files */
+body{margin: 0 auto;
+    font-family: 'Open Sans',Arial,sans-serif;
+          font-size: 14px;
+          background:#f5b19a;
+        }
+  h1 {color: #369;font-family: Arial, Helvetica, sans-serif;font-size: 250%;}
+  
+  table{border:1px solid #ddd;border-spacing: 0;border-collapse: collapse;}
+  table thead tr{background:#5f4f46;color:#fff;}
+  table td, table th{border:1px solid#ddd; font-weight: normal;}
+  table tbody tr:nth-child(odd){background:#f2f2f2;}
+  table td, table th{padding:5px;}
+  
+  button{
+    border:1px solid #999999; border-radius: 6px;padding: 5px 15px 5px 15px; text-decoration:none; display:inline-block;text-shadow: 1px 1px 0 rgba(255,255,255,0.3);color: #000000;
+    background-color: #FFFFFF; 
+    background-image: linear-gradient(to bottom, #FFFFFF, #CFCFCF);
+    cursor: pointer;outline: none;
+    }
+  button:hover{
+     border:1px solid #7A7A7A;
+     background-color: #EEEEEE; 
+     background-image: linear-gradient(to bottom, #EEEEEE, #C7C7C7);
+    }
+  .pull-right{float: right; color: #000; margin:10px 0;text-decoration: none;}
+  
+  
+  
+  
+  .header {background: #f1bcb4; height:50px; border-bottom: 1px solid #e89f90;}
+  .header .logo{background: #8b5c7d;padding: 14px 0 10px 10px; width:190px; color: #fff; font-size: 142%; border-bottom:1px solid #8b5c7d;}
+  
+  .main-nav{float: left; width:200px; height:100%; background:#605047; border-right:1px solid dashed;  height: 100vh;}
+  .main-content{float: left; padding: 10px; background:#fff; margin:10px 30px; width:calc(100% - 280px);}
+  .main-nav ul{padding: 0; margin: 0;}
+  
+  /* .main-nav ul li{list-style-type: none; float: left; padding:0;} */
+  /* .main-nav ul li:first-child{padding-left: 0;}
+  .main-nav ul li:last-child{padding-right: 0;}
+  .main-nav ul li{list-style-type: none; padding:10px 0;} */
+  
+  .main-nav ul li{list-style-type: none; padding: 0; overflow: hidden;}
+  .main-nav ul li a{padding: 10px 0 10px 10px; display:inline-block; color:#fff;width:100%; text-decoration: none;}
+  .main-nav ul li a.active, .main-nav ul li a:hover{background: #4f403d;}
+  
+  .text-red{color:red;}
+  .update-form > div >label{width:9%;padding: 5px; margin:5px 0; float:left;}
+  .update-form > div >label+.input-wrap{width:85%; display: inline-block;}
+  .update-form > div >label+.input-wrap>input, .update-form > div >label+.input-wrap>select 
+  {width:calc(100% - 10px); padding: 5px;  margin:5px 0;border-radius: 3px; border:1px solid #ddd;}
+  .update-form > div >label+.input-wrap>select{width: auto;background: #fff;}
+  
+  .update-form .form-control{clear: both; margin-bottom: 10px;}
+  .update-form .has-error{color:red;}
+  
+  

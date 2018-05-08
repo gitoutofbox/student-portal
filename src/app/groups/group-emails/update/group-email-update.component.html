@@ -1,0 +1,20 @@
+<div class="update-main">
+  <form class="update-form" [formGroup]="updateForm" (ngSubmit)="onSubmit()" novalidate autocomplete="off">   
+      <div class="form-control" ngClass="{'has-error':updateForm.controls.name.invalid}">
+          <label for="emailId">Email:<span class="text-red">*</span></label>
+          <div class="input-wrap">
+            <select name="emailId" id="emailId" formControlName="emailId">
+              <option value="">Select Email</option>
+              <option *ngFor="let record of emailList" [value]="record.id">{{record.name}} - {{record.email}}</option>
+          </select>
+              <div *ngIf="submitted && updateForm.controls.emailId.hasError('required')" class="text-red">Name is required</div>
+          </div>
+      </div> 
+      <div class="form-control">
+          <label>&nbsp;</label> 
+          <input type="hidden" name="groupId" formControlName="groupId" />
+          <input type="hidden" name="id" formControlName="id" />
+         <button type="buttont" type="submit">Save</button>
+      </div>
+  </form>
+</div>

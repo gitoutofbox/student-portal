@@ -1,0 +1,37 @@
+<div class="update-main">
+  <form class="update-form" [formGroup]="emailForm" (ngSubmit)="onSubmit()" novalidate autocomplete="off">   
+      <div class="form-control" ngClass="{'has-error':emailForm.controls.group.invalid}">
+          <label for="group">Group:<span class="text-red">*</span></label>
+          <div class="input-wrap">
+              <select name="group" id="group" formControlName="group">
+                  <option value="">Select Group</option>
+                  <option *ngFor="let group of groupList" [value]="group.id">{{group.name}}</option>
+              </select>
+              <div *ngIf="submitted && emailForm.controls.group.hasError('required')" class="text-red">Group is required</div>
+          </div>
+      </div> 
+      <div class="form-control" ngClass="{'has-error':emailForm.controls.email.invalid}">
+          <label for="subject">Mail Subject:<span class="text-red">*</span></label>
+          <div class="input-wrap">
+              <input type="text" name="subject" id="subject" formControlName="subject"/>
+              <div *ngIf="submitted && emailForm.controls.subject.hasError('required')" class="text-red">Subject is required</div>
+          </div>
+      </div>
+
+      <div class="form-control" ngClass="{'has-error':emailForm.controls.email.invalid}">
+          <label for="email">Mail Body:<span class="text-red">*</span></label>
+          <div class="input-wrap">
+              <!-- <textarea id="mainBody" name="mainBody" formControlName="mainBody"></textarea> -->
+              <app-tinymce formControlName='mainBody'></app-tinymce>  
+              <div *ngIf="submitted && emailForm.controls.mainBody.hasError('required')" class="text-red">Subject is required</div>
+          </div>
+      </div>
+
+      <div class="form-control">
+          <label>&nbsp;</label> 
+         
+         <button type="buttont" type="submit">Send</button>
+      </div>
+
+  </form>
+</div>

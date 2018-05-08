@@ -1,0 +1,28 @@
+<a routerLink='/email-add' class="pull-right">Add Email</a>
+
+<table  width="100%">
+    <thead>
+        <tr>
+            <th width="35%" align="left">Name</th>
+            <th width="25%" align="left">Email</th>
+            <th width="15%" align="right">Date Registered</th>
+            <th width="15%" align="right">Last Updated</th>
+            <th width="10%">Action</th>            
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let email of emailList">
+            <td>{{email.name}}</td>
+            <td>{{email.email}}</td>
+            <td align="right">{{(email.created_on)}}</td>
+            <td align="right">{{email.updated_on}}</td>
+            <td align="center">
+                <a routerLink='/email-update/{{email.id}}' title="Edit">Edit</a> &nbsp;       
+                <a routerLink='/email-delete/{{email.id}}' title="Delete">Delete</a>
+            </td>
+        </tr>
+        <tr *ngIf="!emailList || emailList.length == 0">
+            <td align="center" colspan="5">No Record Found</td>
+        </tr>
+    </tbody>
+</table>

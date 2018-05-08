@@ -1,0 +1,28 @@
+<a routerLink='/group-add' class="pull-right">Add Group</a>
+
+<table  width="100%">
+    <thead>
+        <tr>
+            <th width="40%" align="left">Group</th>
+            <th width="10%" align="left">Emails</th>
+            <th width="20%" align="right">Date Created</th>
+            <th width="20%" align="right">Last Modified</th>
+            <th width="10%">Action</th>            
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let group of listArr">
+            <td>{{group.name}}</td>
+            <td><a routerLink='/group-emails/{{group.id}}' title="Edit">Edit</a> &nbsp;       </td>
+            <td align="right">{{group.created_on}}</td>
+            <td align="right">{{group.updated_on}}</td>
+            <td align="center">
+                <a routerLink='/group-update/{{group.id}}' title="Edit">Edit</a> &nbsp;       
+                <a routerLink='/group-delete/{{group.id}}' title="Delete">Delete</a>
+            </td>
+        </tr>
+        <tr *ngIf="!listArr || listArr.length == 0">
+            <td align="center" colspan="4">No Record Found</td>
+        </tr>
+    </tbody>
+</table>
