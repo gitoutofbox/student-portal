@@ -124,6 +124,12 @@ app.get("/groups",function(req, res){
     });
 });
 
+app.get("/groupsTOSubscribe",function(req, res){
+    connection.query("select * from sp_groups WHERE is_visible_on_subscription = 'Y'", function(err, result) {
+        if (err) throw err
+        res.status(200).send({'status': 'success', data:result});
+    });
+});
 
 app.get("/group/:id",function(req, res){
     var id = req.params.id;

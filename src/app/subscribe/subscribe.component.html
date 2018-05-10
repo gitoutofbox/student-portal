@@ -1,0 +1,35 @@
+<div class="update-main">
+  <form class="update-form" [formGroup]="subscribeForm" (ngSubmit)="onSubmit()" novalidate autocomplete="off">   
+      <div class="form-control" ngClass="{'has-error':subscribeForm.controls.name.invalid}">
+          <label for="name">Name:<span class="text-red">*</span></label>
+          <div class="input-wrap">
+              <input type="text" name="name" id="name" formControlName="name"/>
+              <div *ngIf="submitted && subscribeForm.controls.name.hasError('required')" class="text-red">Name is required</div>
+          </div>
+      </div>
+      <div class="form-control" ngClass="{'has-error':subscribeForm.controls.name.invalid}">
+        <label for="name">Email:<span class="text-red">*</span></label>
+        <div class="input-wrap">
+            <input type="email" name="email" id="email" formControlName="email"/>
+            <div *ngIf="submitted && subscribeForm.controls.email.hasError('required')" class="text-red">Email is required</div>
+              <div *ngIf="submitted && !subscribeForm.controls.email.hasError('required') && subscribeForm.controls.email.hasError('email')" class="text-red">Not a valid email</div>
+        </div>
+        </div> 
+
+        <div class="form-control" ngClass="{'has-error':subscribeForm.controls.name.invalid}">
+            <label for="groupId">Interestd In:</label>
+            <div class="input-wrap">
+              <select name="groupId" id="groupId" formControlName="groupId">
+                <option value="">All</option>
+                <option *ngFor="let record of groups" [value]="record.id">{{record.name}} - {{record.email}}</option>
+            </select>
+                <div *ngIf="submitted && subscribeForm.controls.groupId.hasError('required')" class="text-red">Group is required</div>
+            </div>
+        </div>
+
+      <div class="form-control">
+          <label>&nbsp;</label> 
+         <button type="buttont" type="submit">Save</button>
+      </div>
+  </form>
+</div>
