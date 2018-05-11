@@ -1,6 +1,6 @@
 <subscribe></subscribe>
 <a routerLink='/email-add' class="pull-right">Add Email</a>
-
+Total: {{totalRecords}} records
 <table  width="100%">
     <thead>
         <tr>
@@ -27,3 +27,11 @@
         </tr>
     </tbody>
 </table>
+<div>
+    Showing of Total {{totalRecords}} recoreds
+    pagination: {{pagination}}
+    <ul>
+        <li *ngFor="let a of paginatoin; let index = index">Something {{ index }}</li>
+      </ul>
+
+</div>

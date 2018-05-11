@@ -41,13 +41,38 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.get("/emails",function(req, res){
-    connection.query('select * from sp_emails ORDER BY updated_on DESC', function(err, result) {
-        if (err) throw err
-        res.status(200).send({status: 'success', data:result});
+app.post("/emails",function(req, res){
+    var pageNo =            req.body.pageNo?req.body.pageNo:1;
+    var recordPerPage =     req.body.recordPerPage?req.body.recordPerPage:30;
+    var orderByField =      req.body.orderByField?req.body.orderByField:'updated_on';
+    var orderType =         req.body.orderType?req.body.orderType:'DESC';
+    var sqlLimit = '  ';
+    var sqlOrderBy = ' ';
+    
+    var sql = "SELECT * FROM";
+    var table=  " sp_emails ";
+    
+    sqlOrderBy = " ORDER BY "+ orderByField +" "+orderType;
+    if(pageNo) {
+        sqlLimit =  " LIMIT 0, "+recordPerPage;
+    }
+    //console.log(sql+table+sqlOrderBy+sqlLimit);
+   
+    connection.query(sql+table+sqlOrderBy+sqlLimit, function(err, result) {
+        if (err) throw err;
+        getTotalRowsCount("SELECT COUNT(*) as totalRows FROM "+table+sqlOrderBy, result, res);
+        //console.log('totalRow', totalRow)
+        //res.status(200).send({status: 'success', data:{records: result, totalRow: totalRow}});
     });
 });
 
+function getTotalRowsCount(sql, records, res) {
+    return connection.query(sql, function(err, result) {
+        if (err) throw err
+        console.log(result[0]);
+        res.status(200).send({status: 'success', data:{records: records, totalRows: result[0].totalRows}});
+    });
+}
 app.post("/duplicate",function(req, res){
     var field   = req.body.field;
     var id      = req.body.id;

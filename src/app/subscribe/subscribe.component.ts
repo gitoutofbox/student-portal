@@ -24,20 +24,25 @@ export class SubscribeComponent implements OnInit {
   onSubmit(){
     this.submitted = true;
     if(this.subscribeForm.valid) {
-        // let postData = {
-        //     id      : this.updateForm.value.id,
-        //     name    : this.updateForm.value.name
-        // }
-        // if(this.updateForm.value.id != '') {
-        //     this.apiService.put('http://localhost:3003/group', postData).subscribe(data => {
-        //     this.router.navigate(['/groups']);
-        //     });
-        // } else {
-        //     this.apiService.post('http://localhost:3003/group', postData).subscribe(data => {
-        //         this.router.navigate(['/groups']);
-        //     });
-        // }
-    }
+        let postData = {
+            email    : this.subscribeForm.value.email,
+            name     : this.subscribeForm.value.name
+        }
     
-};
+        this.apiService.post('http://localhost:3003/email', postData).subscribe(response => {
+            let emailId = response.data.insertId;
+            if(this.subscribeForm.value.groupId) {
+              this.addInGroup(emailId);
+            }
+        });
+    }
+  };
+
+  addInGroup(emailId) {
+    let postData = {
+      email_id: emailId,
+      group_id: this.subscribeForm.value.groupId
+    }
+    this.apiService.post('http://localhost:3003/groupEmails', postData).subscribe(response => {console.log('asdasd')});
+  }
 }
