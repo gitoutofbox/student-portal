@@ -19,7 +19,7 @@ Total: {{totalRecords}} records
             <td align="right">{{email.updated_on}}</td>
             <td align="center">
                 <a routerLink='/email-update/{{email.id}}' title="Edit">Edit</a> &nbsp;       
-                <a routerLink='/email-delete/{{email.id}}' title="Delete">Delete</a>
+                <a  title="Delete" (click)="delete(email)">Delete</a>
             </td>
         </tr>
         <tr *ngIf="!emailList || emailList.length == 0">
@@ -35,3 +35,4 @@ Total: {{totalRecords}} records
       </ul>
 
 </div>
+<modal-dialogue [showModal]="showModal" (okCallback)="deleteEmailCallback($event)" [data]="itemToDelete"></modal-dialogue>

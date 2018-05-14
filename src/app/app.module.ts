@@ -17,6 +17,7 @@ import { TinymceModule } from 'angular2-tinymce';
 import { GroupEmailListComponent } from './groups/group-emails/list/group-email-list.component';
 import { GroupEmailUpdateComponent } from './groups/group-emails/update/group-email-update.component';
 import { SubscribeComponent } from './subscribe/subscribe.component';
+import { ModalComponent } from './modal/modal.component';
 
 
 const appRoutes: Routes = [
@@ -78,7 +79,8 @@ const appRoutes: Routes = [
     SendEmailComponent,
     GroupEmailListComponent,
     GroupEmailUpdateComponent,
-    SubscribeComponent
+    SubscribeComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule, HttpModule, FormsModule, ReactiveFormsModule, TinymceModule, 

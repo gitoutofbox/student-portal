@@ -10,7 +10,19 @@ import { ApiService }  from '../../../api.service';
   styleUrls: ['./group-email-update.component.css']
 })
 export class GroupEmailUpdateComponent implements OnInit {
-
+  private addedEmails: any; 
+  onDrop(e) {
+    e.preventDefault();
+    let data = e.dataTransfer.getData('text');
+    e.target.appendChild(document.getElementById(data));
+  }
+  onDrag(e) {
+    console.log('xxxx');
+    e.dataTransfer.setData("text", e.target.id);
+  }
+  onDragOver(e){
+    e.preventDefault();
+  }
   private groupId: number;
   private id: number;
   private submitted: boolean;
