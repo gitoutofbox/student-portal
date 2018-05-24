@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService }  from '../../api.service';
+import { MessageService } from '../../message.service';
 
 import { Injectable } from '@angular/core';
 
@@ -26,7 +27,7 @@ private id: number;
         name: ['', Validators.required],
         email: ['', Validators.compose([Validators.required, Validators.email])]
     });
-    constructor(private route: ActivatedRoute, private fb: FormBuilder, private router: Router, private apiService: ApiService) {
+    constructor(private route: ActivatedRoute, private fb: FormBuilder, private router: Router, private apiService: ApiService, private messageService: MessageService) {
       this.route.params.subscribe( params  => {
           this.id = params['id'];
       } );
@@ -71,7 +72,9 @@ private id: number;
             }
             if(this.updateForm.value.id != '') {
                 this.apiService.put('http://localhost:3003/email', postData).subscribe(data => {
-                this.router.navigate(['/emails']);
+                    
+                    this.messageService.setMessage(1);
+                    this.router.navigate(['/emails']);
                 });
             } else {
                 this.apiService.post('http://localhost:3003/email', postData).subscribe(data => {

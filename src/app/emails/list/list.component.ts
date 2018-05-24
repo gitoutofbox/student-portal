@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService }  from '../../api.service';
-
+import { MessageService }  from '../../message.service';
+import { PaginationComponent } from '../../pagination/pagination.component';
 
 import { Injectable } from '@angular/core';
 export interface IEmail {
@@ -19,15 +20,19 @@ export class EmailListComponent implements OnInit {
   private itemToDelete: Object;
   
   private pageNo:number =  1;
-  private recordPerPage: number =2;
-  private pagination= new Array(12); 
+  private recordPerPage: number = 5;
   private emailList: Array<any>;
   private totalRecords: number;
-  constructor(private apiService: ApiService) {}
+
+  private message: string;
+  constructor(private apiService: ApiService, private messageService: MessageService) {}
   ngOnInit() {
-            
-      this.apiService.post('http://localhost:3003/emails',{pageNo:this.pageNo, recordPerPage:this.recordPerPage})
-      .subscribe(response => {this.emailList= response.data.records; this.totalRecords= response.data.totalRows});
+    //this.message = this.messageService.getMessage();
+    this.getRecords();
+  }
+  getRecords() {
+    this.apiService.post('http://localhost:3003/emails',{pageNo:this.pageNo, recordPerPage:this.recordPerPage})
+    .subscribe(response => {this.emailList= response.data.records; this.totalRecords= response.data.totalRows});
       
   }
   delete(email:IEmail) {
@@ -40,5 +45,10 @@ export class EmailListComponent implements OnInit {
   }
   deleteEmailCallback(e) {
     alert(' do delete');
+  }
+
+  doPaginate(pageNum: number) {
+    this.pageNo = pageNum;
+    this.getRecords();
   }
 }

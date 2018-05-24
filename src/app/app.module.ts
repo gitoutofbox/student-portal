@@ -13,11 +13,13 @@ import { GroupListComponent } from './groups/list/list.component';
 import { GroupUpdateComponent } from './groups/update/update.component';
 import { SendEmailComponent } from './send-email/send-email.component';
 import { ApiService } from './api.service';
+import { MessageService } from './message.service';
 import { TinymceModule } from 'angular2-tinymce';
 import { GroupEmailListComponent } from './groups/group-emails/list/group-email-list.component';
 import { GroupEmailUpdateComponent } from './groups/group-emails/update/group-email-update.component';
 import { SubscribeComponent } from './subscribe/subscribe.component';
 import { ModalComponent } from './modal/modal.component';
+import { PaginationComponent } from './pagination/pagination.component';
 
 
 const appRoutes: Routes = [
@@ -80,7 +82,8 @@ const appRoutes: Routes = [
     GroupEmailListComponent,
     GroupEmailUpdateComponent,
     SubscribeComponent,
-    ModalComponent
+    ModalComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule, HttpModule, FormsModule, ReactiveFormsModule, TinymceModule, 
@@ -88,7 +91,7 @@ const appRoutes: Routes = [
       appRoutes, {enableTracing: false}
     )
   ],
-  providers: [ApiService],
+  providers: [ApiService, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

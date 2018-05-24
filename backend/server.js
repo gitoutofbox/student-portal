@@ -49,14 +49,14 @@ app.post("/emails",function(req, res){
     var sqlLimit = '  ';
     var sqlOrderBy = ' ';
     
-    var sql = "SELECT * FROM";
+    var sql = "SELECT * FROM ";
     var table=  " sp_emails ";
     
     sqlOrderBy = " ORDER BY "+ orderByField +" "+orderType;
     if(pageNo) {
-        sqlLimit =  " LIMIT 0, "+recordPerPage;
+        sqlLimit =  " LIMIT "+ (pageNo - 1) * recordPerPage +", "+recordPerPage;
     }
-    //console.log(sql+table+sqlOrderBy+sqlLimit);
+    console.log(sql+table+sqlOrderBy+sqlLimit);
    
     connection.query(sql+table+sqlOrderBy+sqlLimit, function(err, result) {
         if (err) throw err;

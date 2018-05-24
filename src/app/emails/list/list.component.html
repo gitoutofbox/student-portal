@@ -1,6 +1,8 @@
 <subscribe></subscribe>
 <a routerLink='/email-add' class="pull-right">Add Email</a>
 Total: {{totalRecords}} records
+
+<div [innerHTML] ="messageService.showMessage()"></div>
 <table  width="100%">
     <thead>
         <tr>
@@ -27,12 +29,5 @@ Total: {{totalRecords}} records
         </tr>
     </tbody>
 </table>
-<div>
-    Showing of Total {{totalRecords}} recoreds
-    pagination: {{pagination}}
-    <ul>
-        <li *ngFor="let a of paginatoin; let index = index">Something {{ index }}</li>
-      </ul>
-
-</div>
+<pagination [totalRecords]="totalRecords" [recordsPerPage]="recordPerPage" (doPaginate)="doPaginate($event)"></pagination>
 <modal-dialogue [showModal]="showModal" (okCallback)="deleteEmailCallback($event)" [data]="itemToDelete"></modal-dialogue>
