@@ -20,6 +20,8 @@ import { GroupEmailUpdateComponent } from './groups/group-emails/update/group-em
 import { SubscribeComponent } from './subscribe/subscribe.component';
 import { ModalComponent } from './modal/modal.component';
 import { PaginationComponent } from './pagination/pagination.component';
+import { CommonModalComponent } from './common-modal/common-modal.component';
+import { ModalLauncherComponent } from './modal-launcher/modal-launcher.component';
 
 
 const appRoutes: Routes = [
@@ -63,6 +65,13 @@ const appRoutes: Routes = [
     path: 'send-email',
     component: SendEmailComponent
   },
+  {
+    path: 'modal-launcher',
+    component: ModalLauncherComponent
+  },
+
+
+
   { 
     path: '',
     redirectTo: '/emails',
@@ -83,7 +92,9 @@ const appRoutes: Routes = [
     GroupEmailUpdateComponent,
     SubscribeComponent,
     ModalComponent,
-    PaginationComponent
+    PaginationComponent,
+    CommonModalComponent,
+    ModalLauncherComponent
   ],
   imports: [
     BrowserModule, HttpModule, FormsModule, ReactiveFormsModule, TinymceModule, 

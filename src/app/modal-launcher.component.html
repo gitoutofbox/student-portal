@@ -1,0 +1,56 @@
+<div>
+  <h1>Common Modal Launcher Page</h1>
+
+  <a href="" (click)="openModal1($event)">Open Modal 1</a>
+  <common-modal (modalClose)="modalClose($event)" [showModal]="showCommonModal">
+      <div class="modal-title">my Title</div>
+      <div class="modal-body">
+          <input type="text" [(ngModel)]="name" />
+      </div>
+      <div class="footer">
+          <button (click)="cancelClick()">Cancel</button>
+          <button (click)="okClick()">OK</button>
+      </div>
+  </common-modal>
+
+<!-------------------------- Modal 2 ---------------------->
+  <br />
+  <br />
+  <a href="" (click)="openModal2($event)">Open Modal 2</a>
+  <common-modal (modalClose)="modalClose2($event)" [showModal]="showCommonModal2">
+      <div class="modal-title">modal 2 title</div>
+      <div class="modal-body">
+        Hi this is modal content. It is static so far but you can it dynamic.
+      </div>
+      <div class="footer">
+          <button (click)="okClick2()">Fine</button>
+      </div>
+  </common-modal>
+  
+
+
+  <!-------------------------- Modal 3. Form ---------------------->
+  <br />
+  <br />
+  <a href="" (click)="openModal3($event)">Open Modal 3, Form</a>
+  <common-modal (modalClose)="modalClose3($event)" [showModal]="showCommonModal3">
+      <div class="modal-title"> Contact Form</div>
+      <div class="modal-body">
+       <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate autocomplete="off">
+        <label>Name</label>: <input type="text" formControlName="name" /> <br />
+        <div *ngIf="submitted && contactForm.controls.name.hasError('required')" class="text-red">Name is required</div>
+        <label>Email</label>: <input type="email" formControlName="email" /> <br />
+        <div *ngIf="submitted && contactForm.controls.email.hasError('required')" class="text-red">Email is required</div>
+        <div *ngIf="submitted && !contactForm.controls.email.hasError('required') && contactForm.controls.email.hasError('email')" class="text-red">Not a valid email</div>
+        
+        <label>Content</label>:  <textarea rows="4" cols="20" formControlName="content"></textarea>
+        <div *ngIf="submitted && contactForm.controls.content.hasError('required')" class="text-red">Content is required</div>
+        
+       </form>
+      </div>
+      <div class="footer">
+          <button (click)="onSubmit()">Submit</button>
+      </div>
+  </common-modal>
+
+</div>
